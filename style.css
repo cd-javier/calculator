@@ -63,6 +63,10 @@ body {
   color: #EFEDEC;
 }
 
+.button:active {
+    opacity: 0.9;
+}
+
 .equal {
   width: calc(10em + 4px);
 
