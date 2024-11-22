@@ -52,3 +52,8 @@ function truncate(number) {
 let previousNumber;
 let operator;
 let currentNumber;
+
+function updateDisplay(value) {
+    const display = document.querySelector('#display')
+    display.textContent = value
+}
