@@ -73,7 +73,7 @@ function getCurrentNumber() {
 }
 
 function getDisplayContent() {
-  return Number(display.textContent)
+  return Number(display.textContent);
 }
 
 // --------------------------
@@ -120,7 +120,13 @@ function clickOperator(button) {
   button.addEventListener("click", () => {
     if (!operator) {
       previousNumber = getDisplayContent();
-      currentNumber = [];
+      currentNumber = [0];
+      operator = button.value;
+    } else if (
+      operator &&
+      currentNumber.length === 1 &&
+      currentNumber[0] === 0
+    ) {
       operator = button.value;
     } else {
       calculate();
@@ -149,16 +155,16 @@ function makeNegative() {
     currentNumber = [-getCurrentNumber()];
     updateDisplay(getCurrentNumber());
   } else {
-    display.textContent = -getDisplayContent()
-    previousNumber = -getDisplayContent()
+    display.textContent = -getDisplayContent();
+    previousNumber = -getDisplayContent();
   }
 }
 
 function clearEverything() {
   previousNumber = undefined;
   operator = undefined;
-  currentNumber = [0]
-  updateDisplay(0)
+  currentNumber = [0];
+  updateDisplay(0);
 }
 
 // --------------------------
@@ -171,4 +177,4 @@ operatorButtons.forEach((button) => clickOperator(button));
 equalButton.addEventListener("click", calculate);
 percentageButton.addEventListener("click", calculatePercentage);
 negativeButton.addEventListener("click", makeNegative);
-acButton.addEventListener("click", clearEverything)
+acButton.addEventListener("click", clearEverything);
