@@ -23,23 +23,23 @@ The goal is to create a calculator using HTML, CSS, and JavaScript.
 
     Create three variables:
         The previous number that is saved in the calculator's memory to perform the operation with.
-        The current number that the user will be typing and will be displayed.
+        The current number that the user will be typing and will be displayed. It's an array.
         The operator.
         
     Select all number buttons.
     For each button:
         When the button is clicked:
             If the current number's length is lower than 11:
-                When it's clicked, the current number is multiplied by 10 its value is added.
-                The display is updated. 
+                The value of the button is pushed to the array.
+                The display is updated with the joined current number array. 
             If it's greater tha 11:
                 Nothing happens
 
     Select decimal button.
     When the button is clicked:
         If the current number does NOT include '.'
-            The value fo the current number is the same + '.'
-            Display current value
+            Push '.' to the current value array
+            Display current value array joined.
         If the current number DOES include '.'
             Nothing happens
 
@@ -48,13 +48,13 @@ The goal is to create a calculator using HTML, CSS, and JavaScript.
         When the button is clicked:
             If the previous number AND operator HAVE NOT been defined:
                 Set the value of the previous number to the current number.
-                Set the current number to 0
+                Set the current number to [0]
                 Set the operator to the value of the button.
             If the previous number and operator HAVE been defined:
                 Perform the operation
                 Display the result of the operation
                 Set the value of the previous number to the result of the operation.
-                Set the current number to 0
+                Set the current number to [0]
                 Set the operator to the value of the button.
 
     Select equal button.

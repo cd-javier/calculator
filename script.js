@@ -54,7 +54,7 @@ function updateDisplay(value) {
 // --------------------------
 let previousNumber;
 let operator;
-let currentNumber = 0;
+let currentNumber = [0];
 
 // --------------------------
 // Query Selectors
