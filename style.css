@@ -52,7 +52,7 @@ body {
 }
 
 button {
-  width: 5em;
+  width: 4em;
   height: 3em;
 
   border-radius: 4px;
@@ -68,7 +68,7 @@ button:active {
 }
 
 .equal {
-  width: calc(10em + 4px);
+  width: calc(8em + 4px);
 
   background-color: #e5a06f;
 }

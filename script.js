@@ -52,7 +52,7 @@ function updateDisplay(value) {
 function canWrite() {
   if (
     display.textContent == getCurrentNumber() &&
-    display.textContent.length === maxCharacters
+    display.textContent.length >= maxCharacters
   ) {
     return false;
   } else {
@@ -63,7 +63,7 @@ function canWrite() {
 // --------------------------
 // Basic Variables
 // --------------------------
-const maxCharacters = 12;
+const maxCharacters = 9;
 let previousNumber;
 let operator;
 let currentNumber = [0];
@@ -110,7 +110,7 @@ function addZero() {
 }
 
 function addDecimal() {
-  if (!currentNumber.includes(".")) {
+  if (!currentNumber.includes(".") && canWrite()) {
     currentNumber.push(".");
     updateDisplay(getCurrentNumber() + ".");
   }
