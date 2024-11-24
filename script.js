@@ -101,11 +101,19 @@ function clickNumber(button) {
 }
 
 function addZero() {
-  if (display.textContent !== "0") {
-    if (canWrite()) {
-      currentNumber.push(0);
-      display.textContent = display.textContent + 0;
-    }
+  if (
+    display.textContent !== "0" &&
+    canWrite() &&
+    getDisplayContent() === getCurrentNumber()
+  ) {
+    currentNumber.push(0);
+    display.textContent = display.textContent + 0;
+  } else if (
+    display.textContent !== 0 &&
+    canWrite() &&
+    getDisplayContent() !== getCurrentNumber()
+  ) {
+    updateDisplay(getCurrentNumber())
   }
 }
 
@@ -136,7 +144,7 @@ function clickOperator(button) {
 }
 
 function calculate() {
-  if (previousNumber && operator) {
+  if (previousNumber !== undefined && operator) {
     const result = operate(operator, previousNumber, getCurrentNumber());
     updateDisplay(result);
     previousNumber = result;
