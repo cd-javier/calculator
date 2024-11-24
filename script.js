@@ -107,25 +107,20 @@ function clickOperator(button) {
       previousNumber = Number(display.textContent);
       currentNumber = [];
       operator = button.value;
-      console.log(`
-        previous number = ${previousNumber}
-        current number = ${currentNumber}
-        operator = ${operator}`);
-      }
-    });
-  }
-  
-  function calculate() {
-    if (previousNumber && operator) {
-      const result = operate(operator, previousNumber, getCurrentNumber());
-      updateDisplay(result);
-      previousNumber = result;
-      currentNumber = [0];
-      operator = undefined;
-      console.log(`
-        previous number = ${previousNumber}
-        current number = ${currentNumber}
-        operator = ${operator}`);
+    } else {
+      calculate();
+      operator = button.value;
+    }
+  });
+}
+
+function calculate() {
+  if (previousNumber && operator) {
+    const result = operate(operator, previousNumber, getCurrentNumber());
+    updateDisplay(result);
+    previousNumber = result;
+    currentNumber = [0];
+    operator = undefined;
   }
 }
 
