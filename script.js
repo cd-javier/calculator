@@ -154,6 +154,13 @@ function makeNegative() {
   }
 }
 
+function clearEverything() {
+  previousNumber = undefined;
+  operator = undefined;
+  currentNumber = [0]
+  updateDisplay(0)
+}
+
 // --------------------------
 // Event Listeners
 // --------------------------
@@ -164,3 +171,4 @@ operatorButtons.forEach((button) => clickOperator(button));
 equalButton.addEventListener("click", calculate);
 percentageButton.addEventListener("click", calculatePercentage);
 negativeButton.addEventListener("click", makeNegative);
+acButton.addEventListener("click", clearEverything)
