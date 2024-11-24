@@ -56,6 +56,10 @@ let previousNumber;
 let operator;
 let currentNumber = [];
 
+function getCurrentNumber() {
+  return Number(currentNumber.join(''))
+}
+
 // --------------------------
 // Query Selectors
 // --------------------------
@@ -72,9 +76,9 @@ const acButton = document.querySelector(".ac");
 // --------------------------
 function addNumber(button) {
   button.addEventListener("click", () => {
-    if (currentNumber.length < 11) {
+    if (display.textContent.length < 12) {
       currentNumber.push(button.value);
-      updateDisplay(Number(currentNumber.join("")));
+      updateDisplay(getCurrentNumber());
     }
   });
 }
