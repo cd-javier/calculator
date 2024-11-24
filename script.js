@@ -103,12 +103,30 @@ function addDecimal() {
 
 function clickOperator(button) {
   button.addEventListener("click", () => {
-    if (!operator && !previousNumber) {
-      previousNumber = getCurrentNumber();
+    if (!operator) {
+      previousNumber = Number(display.textContent);
       currentNumber = [];
       operator = button.value;
-    }
-  })
+      console.log(`
+        previous number = ${previousNumber}
+        current number = ${currentNumber}
+        operator = ${operator}`);
+      }
+    });
+  }
+  
+  function calculate() {
+    if (previousNumber && operator) {
+      const result = operate(operator, previousNumber, getCurrentNumber());
+      updateDisplay(result);
+      previousNumber = result;
+      currentNumber = [0];
+      operator = undefined;
+      console.log(`
+        previous number = ${previousNumber}
+        current number = ${currentNumber}
+        operator = ${operator}`);
+  }
 }
 
 // --------------------------
@@ -118,3 +136,4 @@ numberButtons.forEach((button) => clickNumber(button));
 zeroButton.addEventListener("click", addZero);
 decimalButton.addEventListener("click", addDecimal);
 operatorButtons.forEach((button) => clickOperator(button));
+equalButton.addEventListener("click", calculate);
