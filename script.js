@@ -21,16 +21,16 @@ function operate(operator, previousNumber, currentNumber) {
   let result;
 
   switch (operator) {
-    case 'add':
+    case "add":
       result = add(previousNumber, currentNumber);
       break;
-    case 'subtract':
+    case "subtract":
       result = subtract(previousNumber, currentNumber);
       break;
-    case 'multiply':
+    case "multiply":
       result = multiply(previousNumber, currentNumber);
       break;
-    case 'divide':
+    case "divide":
       result = divide(previousNumber, currentNumber);
       break;
   }
@@ -43,7 +43,7 @@ function truncate(number) {
   const intLength = Math.floor(number).toString().length;
   const numOfTrunc = 10 ** (11 - intLength);
   const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
-  return truncated
+  return truncated;
 }
 
 // --------------------------
@@ -54,6 +54,6 @@ let operator;
 let currentNumber;
 
 function updateDisplay(value) {
-    const display = document.querySelector('#display')
-    display.textContent = value
+  const display = document.querySelector("#display");
+  display.textContent = value;
 }
