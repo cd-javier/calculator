@@ -16,7 +16,13 @@ function divide(a, b) {
   return a / b;
 }
 
-// Operator
+function truncate(number) {
+  const intLength = Math.floor(number).toString().length;
+  const numOfTrunc = 10 ** (11 - intLength);
+  const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
+  return truncated;
+}
+
 function operate(operator, previousNumber, currentNumber) {
   let result;
 
@@ -38,22 +44,25 @@ function operate(operator, previousNumber, currentNumber) {
   return truncate(result);
 }
 
-// Function to truncate the result to fit on display
-function truncate(number) {
-  const intLength = Math.floor(number).toString().length;
-  const numOfTrunc = 10 ** (11 - intLength);
-  const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
-  return truncated;
+function updateDisplay(value) {
+  const display = document.querySelector("#display");
+  display.textContent = value;
 }
 
 // --------------------------
-// Basic variables
+// Basic Variables
 // --------------------------
 let previousNumber;
 let operator;
 let currentNumber = 0;
 
-function updateDisplay(value) {
-  const display = document.querySelector("#display");
-  display.textContent = value;
-}
+// --------------------------
+// Query Selectors
+// --------------------------
+const numberButtons = document.querySelectorAll('.number')
+const decimalButton = document.querySelector('.decimal')
+const operatorButtons = document.querySelectorAll('.operator')
+const equalButton = document.querySelector('.equal')
+const percentageButton = document.querySelector('.percentage')
+const negativeButton = document.querySelector('.negative')
+const acButton = document.querySelector('.ac')
