@@ -135,6 +135,11 @@ function calculate() {
   }
 }
 
+function calculatePercentage() {
+  const result = operate('divide', Number(display.textContent), 100)
+  display.textContent = result;
+}
+
 // --------------------------
 // Event Listeners
 // --------------------------
@@ -143,3 +148,4 @@ zeroButton.addEventListener("click", addZero);
 decimalButton.addEventListener("click", addDecimal);
 operatorButtons.forEach((button) => clickOperator(button));
 equalButton.addEventListener("click", calculate);
+percentageButton.addEventListener("click", calculatePercentage)
