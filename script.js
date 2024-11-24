@@ -18,7 +18,7 @@ function divide(a, b) {
 
 function truncate(number) {
   const intLength = Math.floor(number).toString().length;
-  const numOfTrunc = 10 ** (11 - intLength);
+  const numOfTrunc = 10 ** (maxCharacters - intLength);
   const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
   return truncated;
 }
@@ -52,6 +52,7 @@ function updateDisplay(value) {
 // --------------------------
 // Basic Variables
 // --------------------------
+const maxCharacters = 12;
 let previousNumber;
 let operator;
 let currentNumber = [0];
@@ -74,9 +75,9 @@ const acButton = document.querySelector(".ac");
 // --------------------------
 // Event Listener Functions
 // --------------------------
-function addNumber(button) {
+function clickNumber(button) {
   button.addEventListener("click", () => {
-    if (display.textContent.length < 12) {
+    if (display.textContent.length < maxCharacters) {
       currentNumber.push(button.value);
       updateDisplay(getCurrentNumber());
     }
@@ -93,5 +94,6 @@ function addDecimal() {
 // --------------------------
 // Event Listeners
 // --------------------------
-numberButtons.forEach((button) => addNumber(button));
-decimalButton.addEventListener('click', addDecimal)
+numberButtons.forEach((button) => clickNumber(button));
+
+decimalButton.addEventListener("click", addDecimal);
