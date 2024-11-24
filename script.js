@@ -54,15 +54,32 @@ function updateDisplay(value) {
 // --------------------------
 let previousNumber;
 let operator;
-let currentNumber = [0];
+let currentNumber = [];
 
 // --------------------------
 // Query Selectors
 // --------------------------
-const numberButtons = document.querySelectorAll('.number')
-const decimalButton = document.querySelector('.decimal')
-const operatorButtons = document.querySelectorAll('.operator')
-const equalButton = document.querySelector('.equal')
-const percentageButton = document.querySelector('.percentage')
-const negativeButton = document.querySelector('.negative')
-const acButton = document.querySelector('.ac')
+const numberButtons = document.querySelectorAll(".number");
+const decimalButton = document.querySelector(".decimal");
+const operatorButtons = document.querySelectorAll(".operator");
+const equalButton = document.querySelector(".equal");
+const percentageButton = document.querySelector(".percentage");
+const negativeButton = document.querySelector(".negative");
+const acButton = document.querySelector(".ac");
+
+// --------------------------
+// Event Listener Functions
+// --------------------------
+function addNumber(button) {
+  button.addEventListener("click", () => {
+    if (currentNumber.length < 11) {
+      currentNumber.push(button.value);
+      updateDisplay(Number(currentNumber.join("")));
+    }
+  });
+}
+
+// --------------------------
+// Event Listeners
+// --------------------------
+numberButtons.forEach((button) => addNumber(button));

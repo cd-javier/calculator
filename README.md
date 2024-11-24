@@ -48,13 +48,13 @@ The goal is to create a calculator using HTML, CSS, and JavaScript.
         When the button is clicked:
             If the previous number AND operator HAVE NOT been defined:
                 Set the value of the previous number to the current number.
-                Set the current number to [0]
+                Set the current number to []
                 Set the operator to the value of the button.
             If the previous number and operator HAVE been defined:
                 Perform the operation
                 Display the result of the operation
                 Set the value of the previous number to the result of the operation.
-                Set the current number to [0]
+                Set the current number to []
                 Set the operator to the value of the button.
 
     Select equal button.
