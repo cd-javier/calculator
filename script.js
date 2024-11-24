@@ -158,7 +158,8 @@ function calculate() {
 
 function calculatePercentage() {
   const result = operate("divide", getDisplayContent(), 100);
-  display.textContent = result;
+  currentNumber = [result]
+  updateDisplay(getCurrentNumber())
 }
 
 function makeNegative() {
