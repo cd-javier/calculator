@@ -54,7 +54,7 @@ function updateDisplay(value) {
 // --------------------------
 let previousNumber;
 let operator;
-let currentNumber = [];
+let currentNumber = [0];
 
 function getCurrentNumber() {
   return Number(currentNumber.join(''))
@@ -83,7 +83,15 @@ function addNumber(button) {
   });
 }
 
+function addDecimal() {
+  if (!currentNumber.includes('.')) {
+    currentNumber.push('.')
+    updateDisplay(getCurrentNumber() + '.')
+  }
+}
+
 // --------------------------
 // Event Listeners
 // --------------------------
 numberButtons.forEach((button) => addNumber(button));
+decimalButton.addEventListener('click', addDecimal)
