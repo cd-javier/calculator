@@ -18,7 +18,7 @@ function divide(a, b) {
 
 function truncate(number) {
   const intLength = Math.floor(number).toString().length;
-  const numOfTrunc = 10 ** (maxCharacters - intLength);
+  const numOfTrunc = 10 ** (maxCharacters - 1 - intLength);
   const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
   return truncated;
 }
@@ -47,6 +47,17 @@ function operate(operator, previousNumber, currentNumber) {
 function updateDisplay(value) {
   const display = document.querySelector("#display");
   display.textContent = value;
+}
+
+function canWrite() {
+  if (
+    display.textContent == getCurrentNumber() &&
+    display.textContent.length === maxCharacters
+  ) {
+    return false;
+  } else {
+    return true
+  }
 }
 
 // --------------------------
@@ -78,7 +89,7 @@ const acButton = document.querySelector(".ac");
 // --------------------------
 function clickNumber(button) {
   button.addEventListener("click", () => {
-    if (display.textContent.length < maxCharacters) {
+    if (canWrite()) {
       currentNumber.push(button.value);
       updateDisplay(getCurrentNumber());
     }
@@ -87,7 +98,7 @@ function clickNumber(button) {
 
 function addZero() {
   if (display.textContent !== "0") {
-    if (display.textContent.length < maxCharacters) {
+    if (canWrite()) {
       currentNumber.push(0);
       display.textContent = display.textContent + 0;
     }
