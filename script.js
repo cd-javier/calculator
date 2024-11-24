@@ -113,7 +113,7 @@ function addZero() {
     canWrite() &&
     getDisplayContent() !== getCurrentNumber()
   ) {
-    updateDisplay(getCurrentNumber())
+    updateDisplay(getCurrentNumber());
   }
 }
 
@@ -144,7 +144,10 @@ function clickOperator(button) {
 }
 
 function calculate() {
-  if (previousNumber !== undefined && operator) {
+  if (getCurrentNumber() === 0 && operator === "divide") {
+    clearEverything();
+    updateDisplay("😵‍💫");
+  } else if (previousNumber !== undefined && operator) {
     const result = operate(operator, previousNumber, getCurrentNumber());
     updateDisplay(result);
     previousNumber = result;
