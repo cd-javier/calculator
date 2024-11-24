@@ -56,7 +56,7 @@ function canWrite() {
   ) {
     return false;
   } else {
-    return true
+    return true;
   }
 }
 
@@ -136,8 +136,18 @@ function calculate() {
 }
 
 function calculatePercentage() {
-  const result = operate('divide', Number(display.textContent), 100)
+  const result = operate("divide", Number(display.textContent), 100);
   display.textContent = result;
+}
+
+function makeNegative() {
+  if (Number(display.textContent) === getCurrentNumber()) {
+    currentNumber = [-getCurrentNumber()];
+    updateDisplay(getCurrentNumber());
+  } else {
+    display.textContent = -Number(display.textContent)
+    previousNumber = -Number(display.textContent)
+  }
 }
 
 // --------------------------
@@ -148,4 +158,5 @@ zeroButton.addEventListener("click", addZero);
 decimalButton.addEventListener("click", addDecimal);
 operatorButtons.forEach((button) => clickOperator(button));
 equalButton.addEventListener("click", calculate);
-percentageButton.addEventListener("click", calculatePercentage)
+percentageButton.addEventListener("click", calculatePercentage);
+negativeButton.addEventListener("click", makeNegative);
