@@ -101,9 +101,20 @@ function addDecimal() {
   }
 }
 
+function clickOperator(button) {
+  button.addEventListener("click", () => {
+    if (!operator && !previousNumber) {
+      previousNumber = getCurrentNumber();
+      currentNumber = [];
+      operator = button.value;
+    }
+  })
+}
+
 // --------------------------
 // Event Listeners
 // --------------------------
 numberButtons.forEach((button) => clickNumber(button));
 zeroButton.addEventListener("click", addZero);
 decimalButton.addEventListener("click", addDecimal);
+operatorButtons.forEach((button) => clickOperator(button));
