@@ -72,6 +72,10 @@ function getCurrentNumber() {
   return Number(currentNumber.join(""));
 }
 
+function getDisplayContent() {
+  return Number(display.textContent)
+}
+
 // --------------------------
 // Query Selectors
 // --------------------------
@@ -115,7 +119,7 @@ function addDecimal() {
 function clickOperator(button) {
   button.addEventListener("click", () => {
     if (!operator) {
-      previousNumber = Number(display.textContent);
+      previousNumber = getDisplayContent();
       currentNumber = [];
       operator = button.value;
     } else {
@@ -136,17 +140,17 @@ function calculate() {
 }
 
 function calculatePercentage() {
-  const result = operate("divide", Number(display.textContent), 100);
+  const result = operate("divide", getDisplayContent(), 100);
   display.textContent = result;
 }
 
 function makeNegative() {
-  if (Number(display.textContent) === getCurrentNumber()) {
+  if (getDisplayContent() === getCurrentNumber()) {
     currentNumber = [-getCurrentNumber()];
     updateDisplay(getCurrentNumber());
   } else {
-    display.textContent = -Number(display.textContent)
-    previousNumber = -Number(display.textContent)
+    display.textContent = -getDisplayContent()
+    previousNumber = -getDisplayContent()
   }
 }
 
