@@ -17,8 +17,10 @@ function divide(a, b) {
 }
 
 function truncate(number) {
-  const intLength = Math.floor(number).toString().length;
-  const numOfTrunc = 10 ** (maxCharacters - 1 - intLength);
+  // The calculator display can only hold a certain number of characters
+  // For that reason we need to truncate floaters
+  const intLength = Math.floor(number).toString().length; // Calculate the length of the rounded integer
+  const numOfTrunc = 10 ** (maxCharacters - 1 - intLength); // Decides how many floaters it needs to truncate
   const truncated = Math.floor(number * numOfTrunc) / numOfTrunc;
   return truncated;
 }
@@ -51,7 +53,7 @@ function updateDisplay(value) {
 
 function canWrite() {
   if (
-    display.textContent == getCurrentNumber() &&
+    getDisplayContent() === getCurrentNumber() &&
     display.textContent.length >= maxCharacters
   ) {
     return false;
@@ -107,7 +109,7 @@ function addZero() {
     getDisplayContent() === getCurrentNumber()
   ) {
     currentNumber.push(0);
-    display.textContent = display.textContent + 0;
+    updateDisplay(display.textContent + 0);
   } else if (
     display.textContent !== 0 &&
     canWrite() &&
@@ -126,40 +128,35 @@ function addDecimal() {
 
 function clickOperator(button) {
   button.addEventListener("click", () => {
-    if (!operator) {
-      previousNumber = getDisplayContent();
-      currentNumber = [0];
-      operator = button.value;
-    } else if (
-      operator &&
-      currentNumber.length === 1 &&
-      currentNumber[0] === 0
-    ) {
-      operator = button.value;
-    } else {
+    // Checks if the operator has been declared and the value of current number has changed
+    if ((operator && currentNumber.length > 1) || currentNumber[0] !== 0) {
       calculate();
-      operator = button.value;
     }
+    operator = button.value;
+    previousNumber = getDisplayContent();
+    currentNumber = [0];
   });
 }
 
 function calculate() {
   if (getCurrentNumber() === 0 && operator === "divide") {
+    // Error message in case the user tries to divide by 0
     clearEverything();
     updateDisplay("😵‍💫");
   } else if (previousNumber !== undefined && operator) {
+    // If all parameters have been set, the operations is performed
     const result = operate(operator, previousNumber, getCurrentNumber());
     updateDisplay(result);
-    previousNumber = result;
-    currentNumber = [0];
+    previousNumber = result; // The result is saved for a future operation
+    currentNumber = [0]; // The current value and operators are reset
     operator = undefined;
   }
 }
 
 function calculatePercentage() {
   const result = operate("divide", getDisplayContent(), 100);
-  currentNumber = [result]
-  updateDisplay(getCurrentNumber())
+  currentNumber = [result];
+  updateDisplay(getCurrentNumber());
 }
 
 function makeNegative() {
@@ -167,7 +164,7 @@ function makeNegative() {
     currentNumber = [-getCurrentNumber()];
     updateDisplay(getCurrentNumber());
   } else {
-    display.textContent = -getDisplayContent();
+    updateDisplay(-getDisplayContent());
     previousNumber = -getDisplayContent();
   }
 }
