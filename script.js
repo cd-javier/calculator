@@ -58,13 +58,14 @@ let operator;
 let currentNumber = [0];
 
 function getCurrentNumber() {
-  return Number(currentNumber.join(''))
+  return Number(currentNumber.join(""));
 }
 
 // --------------------------
 // Query Selectors
 // --------------------------
 const numberButtons = document.querySelectorAll(".number");
+const zeroButton = document.querySelector(".zero");
 const decimalButton = document.querySelector(".decimal");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalButton = document.querySelector(".equal");
@@ -84,10 +85,19 @@ function clickNumber(button) {
   });
 }
 
+function addZero() {
+  if (display.textContent !== "0") {
+    if (display.textContent.length < maxCharacters) {
+      currentNumber.push(0);
+      display.textContent = display.textContent + 0;
+    }
+  }
+}
+
 function addDecimal() {
-  if (!currentNumber.includes('.')) {
-    currentNumber.push('.')
-    updateDisplay(getCurrentNumber() + '.')
+  if (!currentNumber.includes(".")) {
+    currentNumber.push(".");
+    updateDisplay(getCurrentNumber() + ".");
   }
 }
 
@@ -95,5 +105,5 @@ function addDecimal() {
 // Event Listeners
 // --------------------------
 numberButtons.forEach((button) => clickNumber(button));
-
+zeroButton.addEventListener("click", addZero);
 decimalButton.addEventListener("click", addDecimal);
